@@ -18,24 +18,26 @@ export const login = async (user, pass) => {
         return 0;
     })
 
-}
+};
 
 export const getAuth = async () => {
     const access = await localStorage.getItem("access");
     const refresh = await localStorage.getItem("refresh");
-    return {access,refresh};
-}
+    return access;
+};
 
-export const getNewAccess = aysnc () => {
+export const getAccess = async () => {
     const {acc,ref} = getAuth();
+
     await axios.post(API_REFRESH_URL,{
-        refresh:ref
+        refresh:ref,
     }).then(async response => {
-        if(reponse.data.access)
+        if(reponse.data.access){
             await localStorage.setItem("access",response.data.access);
+        }
     }).catch(error => {
-        console.log(error)
+        console.log(error);
         return 0;
     })
+   
 }
-
