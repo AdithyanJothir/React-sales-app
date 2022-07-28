@@ -4,6 +4,7 @@ const API_LOGIN_URL = "http://adityanjothir.pythonanywhere.com/api/token/";
 const API_REFRESH_URL = "http://adityanjothir.pythonanywhere.com/api/token/refresh";
 
 export const login = async (user, pass) => {
+    let success = 0;
     await axios.post(API_LOGIN_URL, {
         username: user,
         password: pass
@@ -12,12 +13,13 @@ export const login = async (user, pass) => {
             await localStorage.setItem("access", response.data.access);
             await localStorage.setItem("refresh", response.data.refresh);
             console.log("Login Successful");
+            success = 1;
         }
     }).catch(error => {
         console.log(error);
-        return 0;
+        success = 0;
     })
-
+    return success;
 };
 
 export const getAuth = async () => {
@@ -32,7 +34,7 @@ export const getAccess = async () => {
     await axios.post(API_REFRESH_URL,{
         refresh:ref,
     }).then(async response => {
-        if(reponse.data.access){
+        if(response.data.access){
             await localStorage.setItem("access",response.data.access);
         }
     }).catch(error => {
