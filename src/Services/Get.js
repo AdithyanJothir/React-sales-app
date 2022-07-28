@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const Get = async (url) => {
+export const GetReq = async (url) => {
     let token = localStorage.getItem("access");
     await axios.get(url, {headers: {
         Authorization: 'Bearer ' + token 

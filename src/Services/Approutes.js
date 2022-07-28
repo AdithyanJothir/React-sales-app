@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter,Routes,Route, Navigate} from 'react-router-dom'
-
+import {getAuth} from "./auth";
+import Dashboard from "../pages/dashboard";
 import Landing from '../Components/Landing';
 
 function AppRoutes() {
@@ -12,7 +13,7 @@ function AppRoutes() {
       path="/dashboard"
       element={
         <RequireAuth redirectTo="/login">
-          <Landing />
+          <Dashboard />
         </RequireAuth>
         }
     />
@@ -21,7 +22,7 @@ function AppRoutes() {
 }
 
 function RequireAuth({ children, redirectTo }) {
-    let isAuthenticated = 1;
+    let isAuthenticated = getAuth();
     return isAuthenticated ? children : <Navigate to={redirectTo} />;
   }
   
