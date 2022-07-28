@@ -25,7 +25,10 @@ export const login = async (user, pass) => {
 export const getAuth = async () => {
     const access = await localStorage.getItem("access");
     const refresh = await localStorage.getItem("refresh");
-    return access;
+    if (access){
+        return 1;
+    }
+    
 };
 
 export const getAccess = async () => {
