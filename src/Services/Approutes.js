@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter,Routes,Route, Navigate} from 'react-router-dom'
 import {getAuth} from "./auth";
-import Dashboard from "../pages/dashboard";
+import Dashboard from "../Pages/Dashboard";
 import Landing from '../Components/Landing';
 
 function AppRoutes() {
