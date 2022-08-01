@@ -133,7 +133,13 @@ export default function MiniDrawer({children}) {
           {[{
             text: "Shops",
             link: "/shops"
-          },].map((item, index) => (
+          },
+          {
+            text: "Vehicle",
+            link: "/Vehicle"
+          },
+        
+        ].map((item, index) => (
             <>
             <Link to={item.link}>
             <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>

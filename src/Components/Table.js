@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Deletebutton from './Deletebutton';
+import Editbutton from './Editbutton';
 
 
 
@@ -28,7 +30,7 @@ export default function StickyHeadTable(props) {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer sx={{ maxHeight: 540 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -36,7 +38,8 @@ export default function StickyHeadTable(props) {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{ minWidth: column.minWidth  }}
+                  sx = {{fontSize : '1rem', backgroundColor: '#93b334'}}
                 >
                   {column.label}
                 </TableCell>
@@ -52,7 +55,9 @@ export default function StickyHeadTable(props) {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number' ? column.format(value) : value}
+                        
+                          {column.format && typeof value === 'number' || column.id !="controls" ? value : <><Deletebutton id={row["id"]} url={props.url}/><br></br> <Editbutton/> </>}
+
                         </TableCell>
                       );
                     })}

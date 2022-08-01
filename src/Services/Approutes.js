@@ -6,6 +6,7 @@ import Landing from '../Components/Landing';
 import Login from '../Pages/Login';
 import Shops from '../Pages/Shops';
 import {useState,useEffect} from 'react';
+import Vehicles from '../Pages/Vehicles';
 
 
 export default function AppRoutes() {
@@ -30,6 +31,16 @@ export default function AppRoutes() {
       element={
         <RequireAuth>
           <Shops />
+        </RequireAuth>
+        }
+    />
+
+<Route
+      exact
+      path="/vehicle"
+      element={
+        <RequireAuth>
+          <Vehicles />
         </RequireAuth>
         }
     />

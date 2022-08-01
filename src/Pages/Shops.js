@@ -26,10 +26,11 @@ const Shops = () => {
     
   ]
   const [rows,setRows] = useState([]);
+  const url = "https://adityanjothir.pythonanywhere.com/viewsets/shop/";
   const [isLoaded,setLoaded] = useState(false);
   useEffect(()=> {
     async function getRows(){
-      const result = await getReq("https://adityanjothir.pythonanywhere.com/viewsets/shop/");
+      const result = await getReq(url);
       setRows(result);
       setLoaded(true);
     }
@@ -39,8 +40,7 @@ const Shops = () => {
   return (
     <>
     <Sidebar>
-    
-    {isLoaded ? <Table rowsdata={rows} columnsdata={columns}/>: <TableLoader/>}
+    {isLoaded ? <Table rowsdata={rows} columnsdata={columns} url={url}/>: <TableLoader/>}
     </Sidebar>
     </>
   )

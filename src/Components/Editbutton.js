@@ -7,9 +7,9 @@ import Stack from '@mui/material/Stack';
 export default function IconLabelButtons() {
   return (
     <Stack direction="row" spacing={2}>
-      <Button variant="outlined" startIcon={<EditIcon />}>
+      <Button variant="contained" startIcon={<EditIcon />}>
         Edit
       </Button>
     </Stack>
   );
-}1
+}

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 export const getReq = async (url) => {
     let token = await localStorage.getItem("access");
@@ -22,4 +23,14 @@ export const postReq = async (url,payload) => {
     data:payload
     
 })
+}
+
+export const delReq = async (url) =>{
+  let token = await localStorage.getItem("access");
+  await axios.delete(url,{
+    headers: {
+    Authorization: 'Bearer ' + token 
+    }   
+}).then(response=>toast.success("Item Deleted"))
+.catch(error=>toast.error("Cannot Delete")) 
 }
