@@ -13,10 +13,11 @@ import {
 import {useState} from "react";
 import './Login.css';
 import {login} from '../Services/auth';
+import {useNavigate} from 'react-router-dom';
 
 
-const Login = () => {
-
+export default function Login(){
+    const navigate = useNavigate();
     const [user,setUser] = useState("");
     const [pass,setPass] = useState("");
     const [loginError,setLoginError] = useState("")
@@ -31,25 +32,26 @@ const Login = () => {
         else if (authlogin === 1){
             toast.success("Login successfull");
             console.log("Login Successfull");
+            navigate("/dashboard");
         }
     }
     return (
         <div>
             <AppBar position="static" alignitems="center" color="primary">
                 <Toolbar>
-                    <Grid container justify="center" wrap="wrap">
+                    <Grid container justifyContent="center" wrap="wrap">
                         <Grid item>
                             <Typography variant="h6">Sales App</Typography>
                         </Grid>
                     </Grid>
                 </Toolbar>
             </AppBar>
-            <Grid container spacing={0} justify="center" direction="row">
+            <Grid container spacing={0} justifyContent="center" direction="row">
                 <Grid item>
                     <Grid
                         container
                         direction="column"
-                        justify="center"
+                        justifyContent="center"
                         spacing={2}
                         className="login-form"
                     >
@@ -115,6 +117,6 @@ const Login = () => {
                 </Grid>
             </Grid>
         </div>)
-}
+};
 
-export default Login;
+

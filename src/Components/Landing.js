@@ -4,8 +4,7 @@ import Sidebar from './Sidebar';
 const Landing = () => {
   return (
     <div>
-      
-      Landing Page
+      <h1>Welcome to Landing Page</h1>
     </div>
   )
 }
