@@ -132,17 +132,25 @@ export default function MiniDrawer({children}) {
         <List>
           {[{
             text: "Shops",
-            link: "/shops"
+            link: "/Shops"
           },
           {
             text: "Vehicle",
             link: "/Vehicle"
           },
+          {
+            text: "Route",
+            link: "/Route"
+          },
+          {
+            text: "Driver",
+            link: "/Driver"
+          }
         
         ].map((item, index) => (
             <>
             <Link to={item.link}>
-            <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
+            <ListItem  disablePadding sx={{ display: 'block' }} className="text-grey-500">
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -168,8 +176,19 @@ export default function MiniDrawer({children}) {
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={index} disablePadding sx={{ display: 'block' }}>
+          {[{
+            text: "District",
+            link: "/District"
+          },
+          {
+            text: "Town",
+            link: "/Town"
+          }
+        
+        ].map((item, index) => (
+            <>
+            <Link to={item.link}>
+            <ListItem  disablePadding sx={{ display: 'block' }} className="text-grey-500">
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -186,11 +205,100 @@ export default function MiniDrawer({children}) {
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
+            </Link>
+            </>
           ))}
         </List>
+        <Divider />
+        <List>
+          {[{
+            text: "Category",
+            link: "/Category"
+          },
+          
+          {
+            text: "Item",
+            link: "/Item"
+          },
+          {
+            text: "Stock",
+            link: "/Stock"
+          },
+          {
+            text: "Warehouse",
+            link: "/Warehouse"
+          }
+        
+        ].map((item, index) => (
+            <>
+            <Link to={item.link}>
+            <ListItem  disablePadding sx={{ display: 'block' }} className="text-grey-500">
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+            </Link>
+            </>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {[{
+            text: "Errand",
+            link: "/Errand"
+          },
+          
+          {
+            text: "Sales",
+            link: "/Sales"
+          }
+        
+        ].map((item, index) => (
+            <>
+            <Link to={item.link}>
+            <ListItem  disablePadding sx={{ display: 'block' }} className="text-grey-500">
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+            </Link>
+            </>
+          ))}
+        </List>
+        
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3, mt:10 }}>
         {children}

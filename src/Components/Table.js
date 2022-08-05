@@ -9,6 +9,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Deletebutton from './Deletebutton';
 import Editbutton from './Editbutton';
+import Searchbar from './Searchbar';
+import Addbutton from './Addbutton';
 
 
 
@@ -17,6 +19,14 @@ export default function StickyHeadTable(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const columns = props.columnsdata;
   const rows = props.rowsdata;
+  const [search,setSearch] = React.useState("");
+  
+
+
+  const searchTable = async(term) => {
+    setSearch(term);
+
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -29,14 +39,23 @@ export default function StickyHeadTable(props) {
   };
 
   return (
+    <>
+    <div className='flex space-x-5 justify-end items-center mb-10'>
+    
+    <Searchbar sx={{p:10}} rows={rows}  setSearch={searchTable} search={props.search} attr={props.attr}/>
+    <Addbutton addClick={props.addClick} sx={{pt:10}}/>
+    </div>
+    
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 540 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
+      
+      <TableContainer sx={{ maxHeight: 540 }} >
+        <Table stickyHeader aria-label="sticky table" className="space-x-[10rem]">
+          <TableHead >
+
             <TableRow>
               {columns.map((column) => (
-                <TableCell
-                  key={column.id}
+                <TableCell 
+                  className='ml-10'
                   align={column.align}
                   style={{ minWidth: column.minWidth  }}
                   sx = {{fontSize : '1rem', backgroundColor: '#93b334'}}
@@ -49,21 +68,54 @@ export default function StickyHeadTable(props) {
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
+                if(search == ""){
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} >
                     {columns.map((column) => {
                       const value = row[column.id];
+                      
                       return (
-                        <TableCell key={column.id} align={column.align}>
                         
-                          {column.format && typeof value === 'number' || column.id !="controls" ? value : <><Deletebutton id={row["id"]} url={props.url}/><br></br> <Editbutton/> </>}
+                        <TableCell align={column.align}>
+                        
+                          {column.format && typeof value === 'number' || column.id !="controls" ? value : <><Editbutton row = {row} editClick={props.editClick}/> <Deletebutton id={row["id"]} url={props.url} handleUpdate = {props.handleUpdate}/> </>}
 
                         </TableCell>
                       );
+                      
+                      
                     })}
+                  
                   </TableRow>
                 );
-              })}
+              }
+              else if(row[props.searchcolumn].includes(search)){
+                
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} >
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      
+                      return (
+                        
+                        <TableCell align={column.align}>
+                        
+                          {column.format && typeof value === 'number' || column.id !="controls" ? value : <><Editbutton row = {row} editClick={props.editClick}/> <Deletebutton id={row["id"]} url={props.url} handleUpdate = {props.handleUpdate}/> </>}
+
+                        </TableCell>
+                      );
+                      
+                      
+                    })}
+                  
+                  </TableRow>
+                );
+
+              }
+            }
+            
+              )
+              }
           </TableBody>
         </Table>
       </TableContainer>
@@ -77,5 +129,6 @@ export default function StickyHeadTable(props) {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+    </>
   );
 }

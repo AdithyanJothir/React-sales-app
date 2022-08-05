@@ -7,6 +7,7 @@ import Login from '../Pages/Login';
 import Shops from '../Pages/Shops';
 import {useState,useEffect} from 'react';
 import Vehicles from '../Pages/Vehicles';
+import TripRoutes from '../Pages/TripRoutes';
 
 
 export default function AppRoutes() {
@@ -41,6 +42,16 @@ export default function AppRoutes() {
       element={
         <RequireAuth>
           <Vehicles />
+        </RequireAuth>
+        }
+    />
+  
+  <Route
+      exact
+      path="/route"
+      element={
+        <RequireAuth>
+          <TripRoutes />
         </RequireAuth>
         }
     />

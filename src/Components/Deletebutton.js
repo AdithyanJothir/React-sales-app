@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 import {delReq} from '../Services/Request';
@@ -10,16 +10,15 @@ export default function IconLabelButtons(props) {
     const id = props.id;
     const url = props.url+`${id}/`;
     await delReq(url);
-    window.location.reload();
+    props.handleUpdate();
 
   }
 
   return (
-    <Stack direction="row" spacing={2}>
-      <Button variant="outlined" color="error" startIcon={<DeleteIcon />} onClick={handleDelete}>
-        Delete
-      </Button>
       
-    </Stack>
+      <IconButton aria-label="delete" onClick={handleDelete} color="error">
+  <DeleteIcon />
+</IconButton>
+      
   );
 }

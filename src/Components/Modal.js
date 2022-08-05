@@ -17,13 +17,13 @@ const style = {
 };
 
 export default function BasicModal(props) {
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
   return (
     <div>
       <Modal
-        open={open}
-        
+        open={props.open}
+        onClose={props.handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
